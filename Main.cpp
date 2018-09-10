@@ -30,6 +30,7 @@ int main()
 	sf::Music gameMusic;
 	gameMusic.openFromFile("audio/LacrimosaofDanaOpeningVer.ogg");
 	gameMusic.play();//play music
+	gameMusic.setLoop(true);
 
 	//Create font
 	sf::Font gameFont;
