@@ -1,7 +1,7 @@
 //included loibraries
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
+#include <string>
 
 //entry point for the game
 int main()
@@ -58,6 +58,19 @@ int main()
 		- titleText.getLocalBounds().width / 2, 105);
 
 
+	//score 
+	int score = 0; //set score to 0
+	
+    //setup score Text
+	sf::Text scoreText;
+	scoreText.setFont(gameFont);
+	scoreText.setString("Score: " + std::to_string(score));
+	scoreText.setCharacterSize(50);
+	scoreText.setFillColor(sf::Color::Black);
+
+	scoreText.setPosition((gameWindow.getSize().x / 2)-85, 800);
+
+
 	//----------------------------------------------
 	//game loop
 	//----------------------------------------------
@@ -91,6 +104,7 @@ int main()
 		gameWindow.draw(buttonSprite);
 		gameWindow.draw(titleText);
 		gameWindow.draw(authorText);
+		gameWindow.draw(scoreText);
 
 		//Display the window contents on the screen
 		gameWindow.display();
