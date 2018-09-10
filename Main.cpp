@@ -22,15 +22,26 @@ int main()
 	sf::Sprite buttonSprite;
 	buttonSprite.setTexture(buttonTexture);
 
+	//center sprite in the middle of the screen, you have to realign it as the anchor point is the top left
+	buttonSprite.setPosition(gameWindow.getSize().x / 2 - buttonTexture.getSize().x / 2,
+	gameWindow.getSize().y / 2 - buttonTexture.getSize().y / 2);
+
 	//create Music
 	sf::Music gameMusic;
 	gameMusic.openFromFile("audio/LacrimosaofDanaOpeningVer.ogg");
-	gameMusic.play();
+	gameMusic.play();//play music
+
+	//Create font
+	sf::Font gameFont;
+	gameFont.loadFromFile("fonts/mainfont.ttf");
 
 
-	//center sprite in the middle of the screen, you have to realign it as the anchor point is the top left
-	buttonSprite.setPosition(gameWindow.getSize().x / 2 - buttonTexture.getSize().x / 2,
-		gameWindow.getSize().y / 2 - buttonTexture.getSize().y / 2);
+	//create Title
+	sf::Text titleText;
+	titleText.setFont(gameFont);
+	titleText.setString("Don't sue me Falcom");
+	titleText.setPosition(gameWindow.getSize().x / 2
+		- titleText.getLocalBounds().width / 2, 30);
 
 
 	//----------------------------------------------
@@ -64,6 +75,7 @@ int main()
 
 		// Draw everything
 		gameWindow.draw(buttonSprite);
+		gameWindow.draw(titleText);
 
 		//Display the window contents on the screen
 		gameWindow.display();
