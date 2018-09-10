@@ -92,10 +92,11 @@ int main()
 			}
 		}
 
-		//TODO: update game state
+		//update game state
+		score = score + 1;
+		scoreText.setString("Score: " + std::to_string(score));
 
-
-		//TODO:Draw Graphics
+		//Draw Graphics
 
 		//clear the window to a single colour
 		gameWindow.clear(sf::Color::Cyan);
