@@ -1,6 +1,6 @@
 //included loibraries
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 
 
 //entry point for the game
@@ -21,6 +21,11 @@ int main()
 
 	sf::Sprite buttonSprite;
 	buttonSprite.setTexture(buttonTexture);
+
+	//create Music
+	sf::Music gameMusic;
+	gameMusic.openFromFile("audio/LacrimosaofDanaOpeningVer.ogg");
+	gameMusic.play();
 
 
 	//center sprite in the middle of the screen, you have to realign it as the anchor point is the top left
