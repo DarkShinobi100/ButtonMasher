@@ -43,6 +43,12 @@ int main()
 	titleText.setPosition(gameWindow.getSize().x / 2
 		- titleText.getLocalBounds().width / 2, 30);
 
+	sf::Text authorText;
+	authorText.setFont(gameFont);
+	authorText.setString("By: Edwyn");
+	authorText.setPosition(gameWindow.getSize().x / 2
+		- titleText.getLocalBounds().width / 2, 55);
+
 
 	//----------------------------------------------
 	//game loop
@@ -76,6 +82,7 @@ int main()
 		// Draw everything
 		gameWindow.draw(buttonSprite);
 		gameWindow.draw(titleText);
+		gameWindow.draw(authorText);
 
 		//Display the window contents on the screen
 		gameWindow.display();
