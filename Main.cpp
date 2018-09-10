@@ -40,14 +40,22 @@ int main()
 	sf::Text titleText;
 	titleText.setFont(gameFont);
 	titleText.setString("Don't sue me Falcom");
+	titleText.setCharacterSize(100);
+	titleText.setFillColor(sf::Color::Black);
+	titleText.setStyle(sf::Text::Bold | sf::Text::Italic);
 	titleText.setPosition(gameWindow.getSize().x / 2
 		- titleText.getLocalBounds().width / 2, 30);
+	
 
+	//setup Author Text
 	sf::Text authorText;
 	authorText.setFont(gameFont);
 	authorText.setString("By: Edwyn");
+	authorText.setCharacterSize(80);
+	authorText.setFillColor(sf::Color::Black);
+
 	authorText.setPosition(gameWindow.getSize().x / 2
-		- titleText.getLocalBounds().width / 2, 55);
+		- titleText.getLocalBounds().width / 2, 105);
 
 
 	//----------------------------------------------
