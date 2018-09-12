@@ -95,6 +95,12 @@ int main()
 	sf::Time timeRemaining = timeLimit;
 	sf::Clock gameClock; //game clock
 
+
+	//cooldown funciton
+	sf::Time cooldownLimit = sf::seconds(2.0f); //cooldown time limit
+	sf::Time cooldownRemaining = sf::seconds(0.0f); // cooldowon time remaning
+
+
 	//Click sound effect
 	sf::SoundBuffer clickBuffer;
 	clickBuffer.loadFromFile("audio/buttonclick.ogg");
@@ -134,7 +140,7 @@ int main()
 					{
 						score = score + 1;
 					}
-					else
+					else if(cooldownRemaining.asSeconds() <= 0.0f) // when cooldown is over
 					{
 						//no, start playing
 						playing = true;
@@ -142,11 +148,14 @@ int main()
 						//reset game data
 						score = 0;
 						timeRemaining = timeLimit;
+						
 
 						promptText.setString("click the button as fast as you can!");
 					}
+					
 					//play the click sound
 					clickSound.play();
+					
 				}
 			}
 
@@ -175,7 +184,14 @@ int main()
 				timeRemaining = sf::seconds(0.0f);
 				playing = false;
 				promptText.setString("your final score was: " + std::to_string(score) + "!\n Click the button to start a new game");
+				cooldownRemaining = cooldownLimit; //set cooldown limit
+
 			}
+			
+		}
+		else  
+		{
+			cooldownRemaining = cooldownRemaining - frameTime; //decrease coldown tmer
 		}
 
 		//update text display
