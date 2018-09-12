@@ -58,6 +58,17 @@ int main()
 	authorText.setPosition(gameWindow.getSize().x / 2
 		- titleText.getLocalBounds().width / 2, 105);
 
+	//setup prompt Text
+	sf::Text promptText;
+	promptText.setFont(gameFont);
+	promptText.setString("click the button start the game");
+	promptText.setCharacterSize(60);
+	promptText.setFillColor(sf::Color::White);
+
+	promptText.setPosition(gameWindow.getSize().x / 2
+		- titleText.getLocalBounds().width / 2, 165);
+
+
 
 	//score 
 	int score = 0; //set score to 0
@@ -90,6 +101,12 @@ int main()
 	sf::Sound clickSound;
 	clickSound.setBuffer(clickBuffer);
 
+	//gameover effect
+	sf::SoundBuffer gameOverBuffer;
+	gameOverBuffer.loadFromFile("audio/gameover.ogg");
+	sf::Sound gameOverSound;
+	gameOverSound.setBuffer(gameOverBuffer);
+
 	//Game state
 	bool playing = false;
 
@@ -121,6 +138,12 @@ int main()
 					{
 						//no, start playing
 						playing = true;
+
+						//reset game data
+						score = 0;
+						timeRemaining = timeLimit;
+
+						promptText.setString("click the button as fast as you can!");
 					}
 					//play the click sound
 					clickSound.play();
@@ -148,8 +171,10 @@ int main()
 
 			if (timeRemaining.asSeconds() <= 0.0f)
 			{
+				gameOverSound.play();
 				timeRemaining = sf::seconds(0.0f);
 				playing = false;
+				promptText.setString("your final score was: " + std::to_string(score) + "!\n Click the button to start a new game");
 			}
 		}
 
@@ -169,6 +194,7 @@ int main()
 		gameWindow.draw(authorText);
 		gameWindow.draw(scoreText);
 		gameWindow.draw(timeText);
+		gameWindow.draw(promptText);
 
 		//Display the window contents on the screen
 		gameWindow.display();
